@@ -29,7 +29,3 @@ config/**/*.map
 # 构建文件
 app/public
 app/view
-
-
-# 客户端ts
-tsconfig.client.json
