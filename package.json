@@ -22,7 +22,7 @@
     "lint": "tslint --project . -c tslint.json",
     "clean": "ets clean && gulp clean",
     "build": "npm run clean && npm run tsc && cross-env NODE_ENV=production gulp mini",
-    "mini": "gulp tsmin",
+    "hook": "gulp tsmin",
     "watch": "cross-env NODE_ENV=development gulp browser-sync"
   },
   "dependencies": {

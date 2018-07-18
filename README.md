@@ -20,7 +20,7 @@ Don't tsc compile at development mode, if you had run `tsc` then you need to `np
 
 ```bash
 $ npm run build
-$ npm start
+$ npm start:dev|:pre|:prod 分别启动测试|预发布|正式环境
 ```
 
 ### Npm Scripts

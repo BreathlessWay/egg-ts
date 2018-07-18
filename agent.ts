@@ -9,7 +9,7 @@ export default (agent) => {
     exec('npm run watch');
   });
   agent.messenger.on('reload', () => {
-    exec('npm run mini');
+    exec('npm run hook');
     console.warn('reload');
   });
 };
