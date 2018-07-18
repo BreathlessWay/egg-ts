@@ -11,7 +11,7 @@
     "start:pre": "EGG_SERVER_ENV=pre egg-scripts start --daemon --title=egg-server-ts",
     "start:dev": "EGG_SERVER_ENV=dev egg-scripts start --daemon --title=egg-server-ts",
     "stop": "egg-scripts stop --title=egg-server-ts",
-    "dev": "egg-bin dev -r egg-ts-helper/register",
+    "dev": "gulp dev && egg-bin dev -r egg-ts-helper/register",
     "debug": "egg-bin debug -r egg-ts-helper/register",
     "test-local": "egg-bin test -r egg-ts-helper/register",
     "test": "npm run lint -- --fix && npm run test-local",
