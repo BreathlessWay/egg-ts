@@ -1,0 +1,91 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "egg-ts",
+  "private": true,
+  "egg": {
+    "typescript": true
+  },
+  "scripts": {
+    "start:prod": "EGG_SERVER_ENV=prod egg-scripts start --daemon --title=egg-server-ts",
+    "start:pre": "EGG_SERVER_ENV=pre egg-scripts start --daemon --title=egg-server-ts",
+    "start:dev": "EGG_SERVER_ENV=dev egg-scripts start --daemon --title=egg-server-ts",
+    "stop": "egg-scripts stop --title=egg-server-ts",
+    "dev": "egg-bin dev -r egg-ts-helper/register",
+    "debug": "egg-bin debug -r egg-ts-helper/register",
+    "test-local": "egg-bin test -r egg-ts-helper/register",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "cov": "egg-bin cov -r egg-ts-helper/register",
+    "tsc": "ets && tsc -p tsconfig.json",
+    "ci": "npm run lint && npm run cov && npm run tsc",
+    "autod": "autod",
+    "lint": "tslint --project . -c tslint.json",
+    "clean": "ets clean && gulp clean",
+    "build": "npm run clean && npm run tsc && cross-env NODE_ENV=production gulp mini",
+    "watch": "cross-env NODE_ENV=development gulp browser-sync"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "egg": "^2.6.1",
+    "egg-scripts": "^2.6.0",
+    "egg-validate": "^1.0.0",
+    "egg-view-nunjucks": "^2.2.0",
+    "koa-compress": "^3.0.0",
+    "moment": "^2.22.2"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.3.4",
+    "@types/mocha": "^2.2.40",
+    "@types/node": "^7.0.12",
+    "@types/supertest": "^2.0.0",
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "autoprefixer": "^9.0.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.24.5",
+    "egg-bin": "^4.6.2",
+    "egg-ci": "^1.8.0",
+    "egg-mock": "^3.16.0",
+    "egg-ts-helper": "^1.4.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-cache": "^1.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-make-css-url-version": "0.0.13",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-replace": "^1.0.0",
+    "gulp-rev-append": "^0.1.8",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-uglify": "^3.0.0",
+    "imagemin-pngquant": "^5.1.0",
+    "tslib": "^1.9.0",
+    "tslint": "^4.0.0",
+    "typescript": "^2.8.1"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "ci": {
+    "version": "8"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "eslintIgnore": [
+    "coverage"
+  ],
+  "author": "BreathlessWay",
+  "license": "MIT"
+}

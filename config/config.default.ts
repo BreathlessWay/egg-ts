@@ -1,0 +1,42 @@
+import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+
+// for config.{env}.ts
+export type DefaultConfig = PowerPartial<EggAppConfig & BaseConfig>;
+
+// 应用本身的配置 Scheme
+export interface BaseConfig {
+  news: {
+    pageSize: number;
+    serverUrl?: string;
+  };
+}
+
+export default (appInfo: EggAppInfo) => {
+  const config = {} as PowerPartial<EggAppConfig> & BaseConfig;
+
+  // 覆盖框架，插件的配置;
+  config.keys = appInfo + 'koa-app';
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+    mapping: {
+      '.njk': 'nunjucks'
+    },
+    defaultExtension: '.njk'
+  };
+
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+  };
+
+  config.security = {
+    csrf: false,
+    domainWhiteList: [ 'http://127.0.0.1:8080' ]
+  };
+  // 应用本身的配置;
+  config.news = {
+    pageSize: 10
+  };
+
+  return config;
+};

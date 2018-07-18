@@ -1,0 +1,45 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jquery": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": "eslint:recommended",
+  //使用推荐的eslint语法
+  "rules": {
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 0
+      }
+    ],
+    "no-alert": "error",
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "no-var": "error",
+    "no-console": "off"
+  }
+}

@@ -1,0 +1,32 @@
+logs/
+npm-debug.log
+node_modules/
+coverage/
+.idea/
+run/
+.DS_Store
+.vscode
+*.swp
+*.lock
+*.log
+
+# 构建js
+*.js
+!.autod.conf.js
+!gulpfile.js
+!.postcssrc.js
+!app/client/**/*.js
+
+test/**/*.js
+config/**/*.js
+app/**/*.map
+test/**/*.map
+config/**/*.map
+
+# 构建文件
+app/public
+app/view
+
+
+# 客户端ts
+tsconfig.client.json

@@ -1,0 +1,45 @@
+{% extends "layout.njk" %}
+{% import "layout.njk" as forms %}
+{% block header %}
+<title>主页</title>
+{% endblock %}
+{% block content %}
+{{ content | safe }}
+<br>
+{% raw %}
+{{不转一下}}
+{% endraw %}
+{% include "common.njk" %}
+<h3>home page</h3>
+{% if today %}
+<p>今天是：{{today}}</p>
+{% else %}
+<p>没有时间</p>
+{% endif %}
+<p>
+    <a href="/news">news-link</a>
+</p>
+<img src="/public/image/b419dbdb8312bba5601e3d08dd9cfce1.jpg?rev=@@hash" alt="" width="400">
+{{ forms.field(name='guess', value='guess') }}<p>去除每个item后面的空格</p>
+
+<div style="background: url('/public/image/b419dbdb8312bba5601e3d08dd9cfce1.jpg') no-repeat center">{% for i in [1,2,3,4,5] -%} {{ i }} {%- endfor %}</div>
+<p>去除整体前面的空格</p>
+
+
+<div>{%- for i in [1,2,3,4,5] %} {{ i }} {%- endfor %}</div>
+{% endblock %}
+{% block script %}
+{{ super() }}
+<script src="/public/js/common.js?rev=@@hash"></script>
+<script>
+  $(function () {
+    $.ajax({
+      method: 'get',
+      url: '/api/posts'
+    })
+      .done(function (res) {
+        console.log(res);
+      });
+  });
+</script>
+{% endblock %}
