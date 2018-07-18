@@ -21,7 +21,7 @@
     "autod": "autod",
     "lint": "tslint --project . -c tslint.json",
     "clean": "ets clean && gulp clean",
-    "build": "npm run clean && npm run tsc && cross-env NODE_ENV=production gulp mini",
+    "build": "npm run clean && npm run tsc && cross-env NODE_ENV=production gulp prod",
     "hook": "gulp tsmin",
     "watch": "cross-env NODE_ENV=development gulp browser-sync"
   },
