@@ -12,6 +12,8 @@ $ open http://127.0.0.1:7001/  node启动的服务端口
 $ open http://127.0.0.1:8000/  gulp启动的服务端口 !-开发时所用的端口-!
 ```
 
+**默认情况下只需要通过npm run dev启动开发环境，会自动启动npm run watch服务，自动打开http://127.0.0.1:8000页面**
+
 Don't tsc compile at development mode, if you had run `tsc` then you need to `npm run clean` before `npm run dev`.
 
 ### Deploy
@@ -60,3 +62,7 @@ $ npm start
 ### TODO
 1. 客户端开发支持typescript
 2. 单元测试
+
+### 实时刷新
+1. 更改服务端文件时浏览器无法自动刷新的问题，目前通过在agent中监听服务端文件编译成功后，执行一次gulp编译一个hook文件使gulp检测到文件变动，刷新页面，应该有更好的方式
+2. 更改客户端文件时会自动刷新，通过browser-sync实现

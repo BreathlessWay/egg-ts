@@ -25,6 +25,7 @@
   "exclude": [
     "app/public",
     "app/views",
+    "app/client",
     "node_modules*"
   ]
 }

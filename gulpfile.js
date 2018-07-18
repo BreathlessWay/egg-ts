@@ -27,6 +27,7 @@ const gulp = require('gulp'),
 
 const cssUrl = './app/client/public/css/**/*.scss',
   jsUrl = './app/client/public/js/**/*.js',
+  tsUrl = './app/client/hook/index.ts',
   viewUrl = './app/client/view/**/*.njk',
   imgUrl = './app/client/public/image/**/*.{png,jpg,gif,ico,jpeg}';
 
@@ -46,15 +47,10 @@ gulp.task('scss', function () {
 });
 
 gulp.task('tsmin', function () {
-  return tsProject.src()
-    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-    .pipe(sourcemaps.init())
-    .pipe(tsProject())
-    .js
-    .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./app/public/js'))
-    .pipe(reload({stream: true}));
+  var tsResult = gulp.src(tsUrl) // or tsProject.src()
+    .pipe(tsProject());
+
+  return tsResult.js.pipe(gulp.dest('./app/public/hook'));
 });
 
 gulp.task('jsmin', function () {
@@ -133,5 +129,5 @@ gulp.task('browser-sync', ['watch'], function () {
     browser: 'google chrome',
     port: 8000
   });
-  gulp.watch(['./app/client/**/*']).on('change', reload);
+  gulp.watch(['./app/public/**/*', './app/view/*']).on('change', reload);
 });

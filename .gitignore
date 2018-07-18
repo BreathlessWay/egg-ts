@@ -17,6 +17,9 @@ run/
 !.postcssrc.js
 !app/client/**/*.js
 
+# 自定义命令
+bin
+
 test/**/*.js
 config/**/*.js
 app/**/*.map
