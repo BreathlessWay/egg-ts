@@ -47,10 +47,9 @@ gulp.task('scss', function () {
 });
 
 gulp.task('tsmin', function () {
-  var tsResult = gulp.src(tsUrl) // or tsProject.src()
-    .pipe(tsProject());
-
-  return tsResult.js.pipe(gulp.dest('./app/public/hook'));
+  return gulp.src(tsUrl)
+    .pipe(tsProject())
+    .js.pipe(gulp.dest('./app/public/hook'));
 });
 
 gulp.task('jsmin', function () {

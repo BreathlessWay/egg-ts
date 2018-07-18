@@ -38,7 +38,8 @@
     ],
     "max-line-length": false,
     "trailing-comma": false,
-    "arrow-parens": false
+    "arrow-parens": false,
+    "no-object-literal-type-assertion": false
   }
 }
 

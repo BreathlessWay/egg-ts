@@ -18,7 +18,9 @@ export default (app: Application) => {
   app._name = 'koa-app';
   app.once('server', server => {
     // websocket
-    app.messenger.sendToAgent('reload', '');
+    if (process.env.NODE_ENV === 'development') {
+      app.messenger.sendToAgent('reload', '');
+    }
     console.log('server', server);
   });
   app.on('error', (err, ctx) => {
