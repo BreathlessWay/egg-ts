@@ -68,7 +68,9 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^5.0.0-alpha.3",
     "gulp-uglify": "^3.0.0",
+    "gulp.spritesmith": "^6.9.0",
     "imagemin-pngquant": "^5.1.0",
+    "merge-stream": "^1.0.1",
     "tslib": "^1.9.0",
     "tslint": "^5.11.0",
     "typescript": "^2.8.1"

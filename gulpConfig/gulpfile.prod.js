@@ -18,10 +18,10 @@ const gulp = require('gulp'),
 // “{}”：匹配多个属性    例：src/{a,b}.js(包含a.js和b.js文件)  src/*.{jpg,png,gif}(src下的所有jpg/png/gif文件)；
 // “!”：排除文件    例：!src/a.js(不包含src下的a.js文件)；
 
-module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
+module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl}) => {
 
   gulp.task('scss:prod', function () {
-    gulp.src(cssUrl, {base: './app/client'})
+    return gulp.src(cssUrl, {base: './app/client'})
       .pipe(sourcemaps.init())
       .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
       .pipe(cssver({
@@ -34,7 +34,7 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
   });
 
   gulp.task('jsmin:prod', function () {
-    gulp.src(jsUrl, {base: './app/client'})
+    return gulp.src(jsUrl, {base: './app/client'})
       .pipe(sourcemaps.init())
       .pipe(babel())
       .pipe(uglify())
@@ -43,7 +43,7 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
   });
 
   gulp.task('imagemin:prod', function () {
-    gulp.src(imgUrl, {base: './app/client'})
+    return gulp.src(imgUrl, {base: './app/client'})
       .pipe(cache(imagemin({
         optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
         progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
@@ -52,6 +52,11 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
         svgoPlugins: [{removeViewBox: false}],//不要移除svg的viewbox属性
         use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
       })))
+      .pipe(gulp.dest('./app'));
+  });
+
+  gulp.task('iconfont:prod', function () {
+    return gulp.src(iconUrl, {base: './app/client'})
       .pipe(gulp.dest('./app'));
   });
 
@@ -66,7 +71,7 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
       minifyJS: true,//压缩页面JS
       minifyCSS: true//压缩页面CSS
     };
-    gulp.src(viewUrl, {base: './app/client'})
+    return gulp.src(viewUrl, {base: './app/client'})
       .pipe(replace(/css\/(.*)\.css/ig, 'css/$1.scss'))
       .pipe(revAppend())
       .pipe(replace(/css\/(.*)\.scss/ig, 'css/$1.css'))
@@ -74,5 +79,5 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
       .pipe(gulp.dest('./app'));
   });
 
-  gulp.task('prod', ['scss:prod', 'jsmin:prod', 'imagemin:prod', 'htmlmin:prod']);
+  gulp.task('prod', ['sprite', 'scss:prod', 'jsmin:prod', 'imagemin:prod', 'htmlmin:prod', 'iconfont:prod']);
 };

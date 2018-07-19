@@ -2,3 +2,9 @@ div {
   font-size: 14px;
   background: url("/public/image/b419dbdb8312bba5601e3d08dd9cfce1.jpg") no-repeat center;
 }
+
+.flex {
+  display: flex;
+  transform: rotate(30deg);
+  transform: translateX(100);
+}

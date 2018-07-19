@@ -15,9 +15,9 @@ const gulp = require('gulp'),
 // “{}”：匹配多个属性    例：src/{a,b}.js(包含a.js和b.js文件)  src/*.{jpg,png,gif}(src下的所有jpg/png/gif文件)；
 // “!”：排除文件    例：!src/a.js(不包含src下的a.js文件)；
 
-module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
+module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, spriteUrl}) => {
   gulp.task('scss:dev', function () {
-    gulp.src(cssUrl, {base: './app/client'})
+    return gulp.src(cssUrl, {base: './app/client'})
       .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
       .pipe(sass.sync().on('error', sass.logError))
       .pipe(postcss())
@@ -33,7 +33,7 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
   });
 
   gulp.task('jsmin:dev', function () {
-    gulp.src(jsUrl, {base: './app/client'})
+    return gulp.src(jsUrl, {base: './app/client'})
       .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
       .pipe(eslint())
       // eslint.format() outputs the lint results to the console.
@@ -50,26 +50,35 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
   });
 
   gulp.task('imagemin:dev', function () {
-    gulp.src(imgUrl, {base: './app/client'})
+    return gulp.src(imgUrl, {base: './app/client'})
+      .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+      .pipe(gulp.dest('./app'))
+      .pipe(reload({stream: true}));
+  });
+
+  gulp.task('iconfont:dev', function () {
+    return gulp.src(iconUrl, {base: './app/client'})
       .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
       .pipe(gulp.dest('./app'))
       .pipe(reload({stream: true}));
   });
 
   gulp.task('htmlmin:dev', function () {
-    gulp.src(viewUrl, {base: './app/client'})
+    return gulp.src(viewUrl, {base: './app/client'})
       .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
       .pipe(gulp.dest('./app'))
       .pipe(reload({stream: true}));
   });
 
-  gulp.task('dev', ['scss:dev', 'jsmin:dev', 'imagemin:dev', 'htmlmin:dev']);
+  gulp.task('dev', ['sprite', 'scss:dev', 'jsmin:dev', 'imagemin:dev', 'htmlmin:dev', 'iconfont:dev']);
 
   gulp.task('watch', ['dev'], function () {
     gulp.watch(imgUrl, ['imagemin:dev']);
     gulp.watch(cssUrl, ['scss:dev']);
     gulp.watch(jsUrl, ['jsmin:dev']);
+    gulp.watch(iconUrl, ['iconfont:dev']);
     gulp.watch(viewUrl, ['htmlmin:dev']);
+    gulp.watch(spriteUrl, ['sprite']);
   });
 
   gulp.task('browser-sync', ['watch'], function () {
@@ -78,7 +87,10 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl}) => {
       browser: 'google chrome',
       port: 8000
     });
+
     gulp.watch(['./app/public/**/*', './app/view/*']).on('change', reload);
+
   });
+
 };
 

@@ -66,3 +66,7 @@ $ npm start:dev|:pre|:prod 分别启动测试|预发布|正式环境
 ### 实时刷新
 1. 更改服务端文件时浏览器无法自动刷新的问题，目前通过在agent中监听服务端文件编译成功后，执行一次gulp编译一个hook文件使gulp检测到文件变动，刷新页面，应该有更好的方式
 2. 更改客户端文件时会自动刷新，通过browser-sync实现
+
+### 相关问题
+1. Gulp tasks are asynchronous and Gulp uses async-done to wait for the task's completion. Tasks are called with a callback parameter to call to signal completion. Alternatively, Task can return a stream, a promise, a child process or a RxJS observable to signal the end of the task.
+2. 需要转换雪碧图的小图标放置在client/public/asset目录下，名称需符合class名规范
