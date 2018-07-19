@@ -7,8 +7,7 @@ export default (app: Application) => {
   app.locals = {
     today: ''
   };
-
-  if (app.config.env === <string> 'dev' || app.config.env === <string> 'pre' || app.config.env === <string> 'prod') {
+  if (app.config.env === <string> 'local' && app.config.env === <string> 'unittest') {
     global.console.log = () => {
       return false;
     };

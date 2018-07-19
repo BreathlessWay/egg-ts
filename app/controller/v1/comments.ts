@@ -10,6 +10,6 @@ declare module 'egg' {
   interface IController {
     v1: {
       comments: CommentsController
-    }
+    };
   }
 }
