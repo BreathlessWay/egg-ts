@@ -24,11 +24,6 @@ export default (appInfo: EggAppInfo) => {
     defaultExtension: '.njk'
   };
 
-  config.cors = {
-    origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
-  };
-
   config.security = {
     csrf: false,
     domainWhiteList: [ 'http://127.0.0.1:8080' ]

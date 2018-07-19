@@ -47,6 +47,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.24.5",
+    "cheerio": "^1.0.0-rc.2",
     "egg-bin": "^4.6.2",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.16.0",
