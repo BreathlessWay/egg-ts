@@ -3,6 +3,10 @@
 {% block header %}
 <title>主页</title>
 {% endblock %}
+{% block link %}
+{{ super() }}
+<link rel="stylesheet" href="/public/css/home/index.css?rev=@@hash">
+{% endblock %}
 {% block content %}
 {{ content | safe }}
 <br>

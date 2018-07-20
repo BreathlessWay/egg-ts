@@ -3,7 +3,7 @@ import { Context } from 'egg';
 exports.index = async (ctx: Context) => {
   console.log('index', ctx.validate);
   console.log('route-name: pathFor: ', ctx.helper.pathFor('posts'), ' urlFor: ', ctx.helper.urlFor('posts'));
-  ctx.body = 'index 主页内容展示!!';
+  ctx.body = 'index 主页内容展示!';
 };
 
 exports.new = async (ctx: Context) => {

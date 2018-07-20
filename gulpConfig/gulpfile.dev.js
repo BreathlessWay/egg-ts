@@ -9,7 +9,9 @@ const gulp = require('gulp'),
   eslint = require('gulp-eslint'),
   babel = require('gulp-babel'),
   ts = require('gulp-typescript'),
-  tsProject = ts.createProject('./tsconfig.client.json');
+  tsProject = ts.createProject('./tsconfig.client.json'),
+  watch = require('gulp-watch'),
+  batch = require('gulp-batch');
 // “*”：匹配所有文件    例：src/*.js(包含src下的所有js文件)；
 // “**”：匹配0个或多个子文件夹    例：src/**/*.js(包含src的0个或多个子文件夹下的js文件)；
 // “{}”：匹配多个属性    例：src/{a,b}.js(包含a.js和b.js文件)  src/*.{jpg,png,gif}(src下的所有jpg/png/gif文件)；
@@ -72,13 +74,34 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, spriteUrl}) =
 
   gulp.task('dev', ['sprite', 'scss:dev', 'jsmin:dev', 'imagemin:dev', 'htmlmin:dev', 'iconfont:dev']);
 
-  gulp.task('watch', ['dev'], function () {
-    gulp.watch(imgUrl, ['imagemin:dev']);
-    gulp.watch(cssUrl, ['scss:dev']);
-    gulp.watch(jsUrl, ['jsmin:dev']);
-    gulp.watch(iconUrl, ['iconfont:dev']);
-    gulp.watch(viewUrl, ['htmlmin:dev']);
-    gulp.watch(spriteUrl, ['sprite']);
+  // gulp.task('watch', ['dev'], function () {
+  //   gulp.watch(imgUrl, ['imagemin:dev']);
+  //   gulp.watch(cssUrl, ['scss:dev']);
+  //   gulp.watch(jsUrl, ['jsmin:dev']);
+  //   gulp.watch(iconUrl, ['iconfont:dev']);
+  //   gulp.watch(viewUrl, ['htmlmin:dev']);
+  //   gulp.watch(spriteUrl, ['sprite']);
+  // });
+
+  gulp.task('watch', function () {
+    watch(imgUrl, batch(function (events, done) {
+      gulp.start('imagemin:de', done);
+    }));
+    watch(cssUrl, batch(function (events, done) {
+      gulp.start('scss:dev', done);
+    }));
+    watch(jsUrl, batch(function (events, done) {
+      gulp.start('jsmin:dev', done);
+    }));
+    watch(iconUrl, batch(function (events, done) {
+      gulp.start('iconfont:dev', done);
+    }));
+    watch(viewUrl, batch(function (events, done) {
+      gulp.start('htmlmin:dev', done);
+    }));
+    watch(spriteUrl, batch(function (events, done) {
+      gulp.start('sprite', done);
+    }));
   });
 
   gulp.task('browser-sync', ['watch'], function () {

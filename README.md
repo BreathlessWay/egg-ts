@@ -12,7 +12,9 @@ $ open http://127.0.0.1:7001/  node启动的服务端口
 $ open http://127.0.0.1:8000/  gulp启动的服务端口 !-开发时所用的端口-!
 ```
 
-**默认情况下只需要通过npm run dev启动开发环境，会自动启动npm run watch服务，自动打开http://127.0.0.1:8000页面**
+~~默认情况下只需要通过npm run dev启动开发环境，会自动启动npm run watch服务，自动打开http://127.0.0.1:8000页面~~
+
+***原本在node服务启动后通过agent启动gulp服务，但当gulp出错时无法知道错误原因，而且需要再重启两个服务，所以将两个服务分开启动***
 
 Don't tsc compile at development mode, if you had run `tsc` then you need to `npm run clean` before `npm run dev`.
 
@@ -70,3 +72,4 @@ $ npm start:dev|:pre|:prod 分别启动测试|预发布|正式环境
 ### 相关问题
 1. Gulp tasks are asynchronous and Gulp uses async-done to wait for the task's completion. Tasks are called with a callback parameter to call to signal completion. Alternatively, Task can return a stream, a promise, a child process or a RxJS observable to signal the end of the task.
 2. 需要转换雪碧图的小图标放置在client/public/asset目录下，名称需符合class名规范
+3. gulp.watch本身不支持监听文件的创建删除重命名，通过[gulp-watch](https://github.com/floatdrop/gulp-watch)解决

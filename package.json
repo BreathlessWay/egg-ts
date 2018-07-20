@@ -22,7 +22,7 @@
     "lint": "tslint --project . -c tslint.json",
     "clean": "ets clean && gulp clean",
     "build": "npm run clean && npm run tsc && cross-env NODE_ENV=production gulp prod",
-    "hook": "gulp tsmin",
+    "hook": "gulp tsmin:dev",
     "watch": "cross-env NODE_ENV=development gulp browser-sync"
   },
   "dependencies": {
@@ -54,6 +54,7 @@
     "egg-ts-helper": "^1.4.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
+    "gulp-batch": "^1.0.5",
     "gulp-cache": "^1.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-eslint": "^5.0.0",
@@ -61,6 +62,7 @@
     "gulp-imagemin": "^4.1.0",
     "gulp-make-css-url-version": "0.0.13",
     "gulp-notify": "^3.2.0",
+    "gulp-nunjucks": "^4.0.0",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^7.0.1",
     "gulp-replace": "^1.0.0",
@@ -69,6 +71,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^5.0.0-alpha.3",
     "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^5.0.0",
     "gulp.spritesmith": "^6.9.0",
     "imagemin-pngquant": "^5.1.0",
     "merge-stream": "^1.0.1",

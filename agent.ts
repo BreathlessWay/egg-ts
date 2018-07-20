@@ -6,7 +6,7 @@ export default (agent) => {
   // 但需要等待 App Worker 启动成功后才能发送，不然很可能丢失
   agent.messenger.on('egg-ready', () => {
     if (process.env.NODE_ENV === 'development') {
-      exec('npm run watch');
+      // exec('npm run watch');
     }
     console.warn('egg-ready');
   });
