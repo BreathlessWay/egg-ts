@@ -1,9 +1,8 @@
 import { Application, Context } from 'egg';
 
-export default function (option: any, app: Application) {
+export default function (app: Application) {
   return async (ctx: Context, next: () => Promise<any>) => {
     try {
-      console.log('error-middleware', option);
       await next();
     } catch (err) {
       // 所有的异常都在 app 上触发一个 error 事件，框架会记录一条错误日志

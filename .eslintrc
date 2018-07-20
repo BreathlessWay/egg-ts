@@ -6,7 +6,8 @@
     "jquery": true
   },
   "globals": {
-    "Cookies": true
+    "Cookies": true,
+    "nunjucks": true
   },
   "parser": "babel-eslint",
   "parserOptions": {
