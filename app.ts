@@ -2,7 +2,7 @@ import { Application } from 'egg';
 
 export default (app: Application) => {
   app.beforeStart(async () => {
-    console.log('before start');
+    // console.log('before start');
   });
   app.locals = {
     today: ''
@@ -14,12 +14,12 @@ export default (app: Application) => {
   }
 
   app._name = 'koa-app';
-  app.once('server', server => {
+  app.once('server', () => {
     // websocket
     if (process.env.NODE_ENV === 'development') {
       app.messenger.sendToAgent('reload', '');
     }
-    console.log('server', server);
+    // console.log('server', server);
   });
   app.on('error', (err, ctx) => {
     // report error
@@ -27,24 +27,24 @@ export default (app: Application) => {
   });
   app.on('request', ctx => {
     // log receive request
-    console.log(ctx.protocol);
-    console.log(app.config.news.serverUrl);
+    // console.log(ctx.protocol);
+    // console.log(app.config.news.serverUrl);
     if (!app.config.news.serverUrl!.includes('http')) {
       app.config.news.serverUrl = ctx.protocol + app.config.news.serverUrl;
     }
-    console.log('request');
+    // console.log('request');
   });
-  app.on('response', ctx => {
+  app.on('response', () => {
     // ctx.starttime is set by framework
     // log total cost
-    console.log('response', ctx);
+    // console.log('response', ctx);
   });
-  app.httpclient.on('request', (request: any) => {
-    console.log('app.httpClient.request:', request);
+  app.httpclient.on('request', () => {
+    // console.log('app.httpClient.request:', request);
     // 可以在这里设置一些 trace headers，方便全链路跟踪
   });
-  app.httpclient.on('response', (result: any) => {
-    console.log('app.httpClient.response:', result);
+  app.httpclient.on('response', () => {
+    // console.log('app.httpClient.response:', result);
   });
 };
 

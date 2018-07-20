@@ -13,10 +13,6 @@ export default () => {
   config.compress = {
     threshold: 1024
   };
-  config.logger = {
-    level: 'NONE',
-    consoleLevel: 'INFO'
-  };
   return config;
 };
 

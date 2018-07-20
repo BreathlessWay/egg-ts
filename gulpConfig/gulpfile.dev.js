@@ -85,7 +85,7 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, spriteUrl}) =
 
   gulp.task('watch', function () {
     watch(imgUrl, batch(function (events, done) {
-      gulp.start('imagemin:de', done);
+      gulp.start('imagemin:dev', done);
     }));
     watch(cssUrl, batch(function (events, done) {
       gulp.start('scss:dev', done);

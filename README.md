@@ -73,3 +73,4 @@ $ npm start:dev|:pre|:prod 分别启动测试|预发布|正式环境
 1. Gulp tasks are asynchronous and Gulp uses async-done to wait for the task's completion. Tasks are called with a callback parameter to call to signal completion. Alternatively, Task can return a stream, a promise, a child process or a RxJS observable to signal the end of the task.
 2. 需要转换雪碧图的小图标放置在client/public/asset目录下，名称需符合class名规范
 3. gulp.watch本身不支持监听文件的创建删除重命名，通过[gulp-watch](https://github.com/floatdrop/gulp-watch)解决
+4. 页面post请求时的csrf防御，参考[egg-security](https://eggjs.org/zh-cn/core/security.html)

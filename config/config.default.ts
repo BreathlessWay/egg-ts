@@ -24,10 +24,6 @@ export default (appInfo: EggAppInfo) => {
     defaultExtension: '.njk'
   };
 
-  config.security = {
-    csrf: false,
-    domainWhiteList: [ 'http://127.0.0.1:8080' ]
-  };
   // 应用本身的配置;
   config.news = {
     pageSize: 10

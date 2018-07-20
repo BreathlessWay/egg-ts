@@ -5,6 +5,9 @@
     "browser": true,
     "jquery": true
   },
+  "globals": {
+    "Cookies": true
+  },
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module"
@@ -31,7 +34,7 @@
     "no-multiple-empty-lines": [
       "error",
       {
-        "max": 0
+        "max": 1
       }
     ],
     "no-alert": "error",

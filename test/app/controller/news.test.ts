@@ -1,7 +1,6 @@
-'use strict';
-
+import * as assert from 'assert';
 import * as cheerio from 'cheerio';
-import { app, assert } from 'egg-mock/bootstrap';
+import { app } from 'egg-mock/bootstrap';
 
 describe('test/app/controller/news.test.ts', () => {
   it('should GET /news', async () => {

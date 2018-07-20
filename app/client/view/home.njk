@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/public/css/home/index.css?rev=@@hash">
 {% endblock %}
 {% block content %}
-{{ content | safe }}
+{{ helper.shtml(content) }}
 <br>
 {% raw %}
 {{不转一下!!}}
@@ -39,8 +39,9 @@
 <script>
   $(function () {
     $.ajax({
-      method: 'get',
-      url: '/api/posts'
+      method: 'post',
+      url: '/api/posts',
+      date: {}
     })
       .done(function (res) {
         console.log(res);
