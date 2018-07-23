@@ -4,6 +4,7 @@
 import ExtendObject from '../../../app/extend/helper';
 declare module 'egg' {
   interface IHelper {
-    relativeTime: typeof ExtendObject.relativeTime;
+    formatTime: typeof ExtendObject.formatTime;
+    formatTab: typeof ExtendObject.formatTab;
   }
 }

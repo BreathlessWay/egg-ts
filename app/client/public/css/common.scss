@@ -1,0 +1,58 @@
+@import "var.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-size: 14px;
+  height: 100%;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.cnode-header {
+  z-index: 999;
+  .cnode-header_container {
+    height: 50px;
+  }
+  ul {
+    margin: 0;
+  }
+  .home-logo {
+    width: 120px;
+    height: 28px;
+    background-size: cover;
+    background: url("/public/image/home/logo.svg") no-repeat center;
+  }
+  a {
+    color: $color-fff;
+    &:hover {
+      color: $color-999;
+    }
+  }
+}
+
+i {
+  font-style: normal;
+  font-size: 12px;
+}
+
+.cnode-footer {
+  a {
+    color: $color-fff;
+  }
+  font-size: 20px;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}

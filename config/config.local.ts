@@ -1,23 +1,17 @@
 import { BaseConfig, DefaultConfig } from './config.default';
 
-interface DevConfig {
-  compress: { threshold: number };
-}
-
 export default () => {
-  const config = {} as DefaultConfig & DevConfig;
+  const config = {} as DefaultConfig;
   config.news = {
-    serverUrl: 's://cnodejs.org/api/v1'
+    serverUrl: 'https://cnodejs.org/api/v1'
   };
-  config.middleware = [ 'errorHandler', 'errorPage', 'compress' ];  // 加载顺序 error=>compress=>...
-  config.compress = {
-    threshold: 1024
-  };
+  config.middleware = [ 'errorHandler', 'errorPage' ];  // 加载顺序 error=>compress=>...
+
   return config;
 };
 
 declare module 'egg' {
-  interface EggAppConfig extends BaseConfig, DevConfig {
+  interface EggAppConfig extends BaseConfig {
 
   }
 }

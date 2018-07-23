@@ -1,51 +1,72 @@
-{% extends "layout.njk" %}
-{% import "layout.njk" as forms %}
+{% extends "common/layout.njk" %}
+
 {% block header %}
-<title>主页</title>
+<title>CNode主页</title>
 {% endblock %}
 {% block link %}
 {{ super() }}
-<link rel="stylesheet" href="/public/css/home/index.css?rev=@@hash">
+<link rel="stylesheet" href="/public/css/home.css?rev=@hash">
 {% endblock %}
+
 {% block content %}
-{{ helper.shtml(content) }}
-<br>
-{% raw %}
-{{不转一下!!}}
-{% endraw %}
-{% include "common.njk" %}
-<h3>home page</h3>
-{% if today %}
-<p>今天是：{{today}}</p>
-{% else %}
-<p>没有时间</p>
-{% endif %}
-<p>
-    <a href="/news">news-link</a>
-    <i class="iconfont icon-shezhi"></i>
-</p>
-<img src="/public/image/b419dbdb8312bba5601e3d08dd9cfce1.jpg?rev=@@hash" alt="" width="400">
-{{ forms.field(name='guess', value='guess') }}<p>去除每个item后面的空格</p>
 
-<div style="background: url('/public/image/b419dbdb8312bba5601e3d08dd9cfce1.jpg') no-repeat center">{% for i in [1,2,3,4,5] -%} {{ i }} {%- endfor %}</div>
-<p>去除整体前面的空格</p>
+<article class="container py-3 cnode-home">
+    <article class="row">
+        <section class="cnode-home_left col-9">
+            <ul class="alert alert-info mb-2">
+                {% for item in lists %}
+                {% if ctx.locals.active == item.tab %}
+                <li class="d-inline-block px-2 rounded bg-success">
+                    <a href="/?tab={{ item.tab }}" class="text-white">{{ item.name }}</a>
+                </li>
+                {% else %}
+                <li class="d-inline-block px-2">
+                    <a href="/?tab={{ item.tab }}">{{ item.name }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ol>
+                {% for item in articles %}
+                <li class="p-2 d-flex justify-content-between align-items-center border-bottom cnode-home_articles">
+                    <div>
+                        <a href="/user/{{ item.author.loginname }}" class="d-inline-block align-middle">
+                            <img src="{{ item.author.avatar_url }}" alt="{{ item.author.loginname }}" width="40" class="rounded-circle">
+                        </a>
+                        <a href="/detail/{{ item.id }}" class="ml-1 mr-2 d-inline-block text-truncate cnode-home_article align-middle">
+                            <span class="badge badge-success">
+                                {{ helper.formatTab(item.tab,item.good,item.top) }}
+                            </span>
+                            {{ item.title }}
+                        </a>
+                        <i class="cnode-home_count d-inline-block align-middle">
+                            {{ item.reply_count }} / {{ item.visit_count }}
+                        </i>
+                    </div>
+                    <p class="cnode-home_time">
+                        {{ helper.formatTime(item.create_at)}}
+                    </p>
+                </li>
+                {% endfor %}
+            </ol>
+            <nav>
+                <ul class="pagination justify-content-center mt-4 mb-2">
+                    {% if ctx.locals.page > 1 %}
+                    <li class="page-item"><a class="page-link" href="/?tab={{ ctx.locals.active }}&page={{ ctx.locals.page-1 }}">上一页</a></li>
+                    {% endif %}
+                    {% if hasMore %}
+                    <li class="page-item"><a class="page-link" href="/?tab={{ ctx.locals.active }}&page={{ +ctx.locals.page + 1 }}">下一页</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </section>
+        <section class="cnode-home_right col-3">
+            <img src="/public/image/home/default-avatar.jpg" alt="默认头像" class="rounded">
+            <div class="text-center py-4">
+                <a href="/login" class="btn btn-primary btn-block">登录</a>
+            </div>
+        </section>
+    </article>
+</article>
 
-
-<div>{%- for i in [1,2,3,4,5] %} {{ i }} {%- endfor %}</div>
-{% endblock %}
-{% block script %}
-{{ super() }}
-<script src="/public/js/common.js?rev=@@hash"></script>
-<script>
-  $(function () {
-    $.ajax({
-      method: 'post',
-      url: '/api/posts',
-      date: {}
-    })
-      .done(function (res) {
-        console.log(res);
-      });
-  });
-</script>
 {% endblock %}

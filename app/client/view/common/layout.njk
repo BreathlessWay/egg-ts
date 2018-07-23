@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+
+    {% block header %}
+    <title>CNode</title>
+    <meta name='description' content='CNode：Node.js专业中文社区'>
+    <meta name="keywords" content="nodejs, node, egg, koa"/>
+    {% endblock %}
+
+    {% block link %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/common.css?rev=@@hash">
+    {% endblock %}
+</head>
+<body>
+
+<header class="container-fluid bg-dark cnode-header position-fixed">
+    <section class="container d-flex justify-content-between align-items-center cnode-header_container">
+        <a href="/" class="home-logo d-inline-block"></a>
+        <ul>
+            <li class="d-inline-block mr-4">
+                <a href="/">首页</a>
+            </li>
+            <li class="d-inline-block mr-4">
+                <a href="/api">API</a>
+            </li>
+            <li class="d-inline-block mr-4">
+                <a href="/about">关于</a>
+            </li>
+        </ul>
+    </section>
+</header>
+
+<article class="container-fluid" style="padding-top: 50px">
+    {% block content %}
+    {% endblock %}
+</article>
+
+<footer class="container-fluid bg-dark cnode-footer">
+    <section class="container py-4">
+        <a href="https://cnodejs.org">CNode Intro</a>
+    </section>
+</footer>
+
+{% block script %}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://cdn.bootcss.com/nunjucks/3.0.1/nunjucks-slim.min.js"></script>
+<script src="/public/js/common.js?rev=@@hash"></script>
+{% endblock %}
+</body>
+</html>

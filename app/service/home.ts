@@ -5,15 +5,15 @@ export default class NewsService extends Service {
     super(ctx);
   }
 
-  async list (page?: number): Promise<Item[]> {
+  async list ({tab, page}: { tab: string, page: number }): Promise<Item[]> {
     // read config
-    const {serverUrl, pageSize} = this.config.news;
+    const {serverUrl, limit} = this.config.news;
     // use build-in http client to GET hacker-news api
     const {data: idList} = await this.ctx.curl(`${serverUrl}/topics `, {
       data: {
         page,
-        tab: '',
-        limit: pageSize
+        tab,
+        limit
       },
       method: 'GET',
       dataType: 'json'

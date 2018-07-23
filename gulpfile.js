@@ -16,7 +16,7 @@ const url = {
   jsUrl: './app/client/public/js/**/*.js',
   tsUrl: './app/client/hook/index.ts',
   viewUrl: './app/client/view/**/*.njk',
-  imgUrl: './app/client/public/image/**/*.{png,jpg,gif,ico,jpeg}',
+  imgUrl: './app/client/public/image/**/*.{png,jpg,gif,ico,jpeg,svg}',
   iconUrl: './app/client/public/iconfont/iconfont.{svg,eot,ttf,woff,css}',
   spriteUrl: './app/client/public/asset/*.png',
   tempUrl: './app/client/public/template/*.njk'

@@ -1,10 +1,10 @@
 // This file was auto created by egg-ts-helper
 // Do not modify this file!!!!!!!!!
 
-import News from '../../../app/service/news';
+import Home from '../../../app/service/home';
 
 declare module 'egg' {
   interface IService {
-    news: News;
+    home: Home;
   }
 }

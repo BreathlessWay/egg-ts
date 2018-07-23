@@ -7,7 +7,7 @@ interface DevConfig {
 export default () => {
   const config = {} as DefaultConfig & DevConfig;
   config.news = {
-    serverUrl: 's://cnodejs.org/api/v1'
+    serverUrl: 'https://cnodejs.org/api/v1'
   };
   return config;
 };

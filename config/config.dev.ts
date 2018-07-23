@@ -7,7 +7,7 @@ interface DevConfig {
 export default () => {
   const config = {} as DefaultConfig & DevConfig;
   config.news = {
-    serverUrl: 's://cnodejs.org/api/v1'
+    serverUrl: 'https://cnodejs.org/api/v1'
   };
   config.middleware = [ 'errorHandler', 'errorPage', 'compress' ];  // 加载顺序 error=>compress=>...
   config.compress = {

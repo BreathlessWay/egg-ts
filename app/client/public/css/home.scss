@@ -1,0 +1,23 @@
+@import "var.scss";
+
+.cnode-home {
+  .cnode-home_tabs {
+    background: $color-f6f6f6;
+  }
+  .cnode-home_count {
+    color: $color-818182;
+  }
+  .cnode-home_articles{
+    height: 60px;
+    &:hover{
+      background: #eee;
+    }
+  }
+  .cnode-home_article {
+    font-size: 16px;
+    max-width: 550px;
+  }
+  .cnode-home_time{
+    margin: 0;
+  }
+}

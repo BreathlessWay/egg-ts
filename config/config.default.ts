@@ -6,7 +6,7 @@ export type DefaultConfig = PowerPartial<EggAppConfig & BaseConfig>;
 // 应用本身的配置 Scheme
 export interface BaseConfig {
   news: {
-    pageSize: number;
+    limit: number;
     serverUrl?: string;
   };
 }
@@ -26,7 +26,7 @@ export default (appInfo: EggAppInfo) => {
 
   // 应用本身的配置;
   config.news = {
-    pageSize: 10
+    limit: 15
   };
 
   return config;
