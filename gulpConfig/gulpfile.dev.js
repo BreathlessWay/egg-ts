@@ -11,13 +11,15 @@ const gulp = require('gulp'),
   ts = require('gulp-typescript'),
   tsProject = ts.createProject('./tsconfig.client.json'),
   watch = require('gulp-watch'),
-  batch = require('gulp-batch');
+  batch = require('gulp-batch'),
+  nunjucks = require('gulp-nunjucks'),
+  rename = require('gulp-rename');
 // “*”：匹配所有文件    例：src/*.js(包含src下的所有js文件)；
 // “**”：匹配0个或多个子文件夹    例：src/**/*.js(包含src的0个或多个子文件夹下的js文件)；
 // “{}”：匹配多个属性    例：src/{a,b}.js(包含a.js和b.js文件)  src/*.{jpg,png,gif}(src下的所有jpg/png/gif文件)；
 // “!”：排除文件    例：!src/a.js(不包含src下的a.js文件)；
 
-module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, spriteUrl}) => {
+module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, spriteUrl, tempUrl}) => {
   gulp.task('scss:dev', function () {
     return gulp.src(cssUrl, {base: './app/client'})
       .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
@@ -72,7 +74,18 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, spriteUrl}) =
       .pipe(reload({stream: true}));
   });
 
-  gulp.task('dev', ['sprite', 'scss:dev', 'jsmin:dev', 'imagemin:dev', 'htmlmin:dev', 'iconfont:dev']);
+  gulp.task('template:dev', function () {
+    return gulp.src(tempUrl, {base: './app/client'})
+      .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+      .pipe(nunjucks.precompile())
+      .pipe(rename(function (path) {
+        path.extname = ".js";
+      }))
+      .pipe(gulp.dest('./app'))
+      .pipe(reload({stream: true}));
+  });
+
+  gulp.task('dev', ['sprite', 'scss:dev', 'jsmin:dev', 'imagemin:dev', 'htmlmin:dev', 'iconfont:dev', 'template:dev']);
 
   // gulp.task('watch', ['dev'], function () {
   //   gulp.watch(imgUrl, ['imagemin:dev']);
@@ -84,6 +97,9 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, spriteUrl}) =
   // });
 
   gulp.task('watch', function () {
+    watch(tempUrl, batch(function (events, done) {
+      gulp.start('template:dev', done);
+    }));
     watch(imgUrl, batch(function (events, done) {
       gulp.start('imagemin:dev', done);
     }));

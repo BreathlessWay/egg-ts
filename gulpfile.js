@@ -18,7 +18,8 @@ const url = {
   viewUrl: './app/client/view/**/*.njk',
   imgUrl: './app/client/public/image/**/*.{png,jpg,gif,ico,jpeg}',
   iconUrl: './app/client/public/iconfont/iconfont.{svg,eot,ttf,woff,css}',
-  spriteUrl: './app/client/public/asset/*.png'
+  spriteUrl: './app/client/public/asset/*.png',
+  tempUrl: './app/client/public/template/*.njk'
 };
 
 gulp.task('clean', function () {

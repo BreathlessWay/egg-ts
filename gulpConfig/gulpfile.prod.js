@@ -12,13 +12,15 @@ const gulp = require('gulp'),
   uglify = require('gulp-uglify'),  // 压缩js文件
   postcss = require('gulp-postcss'),  // postcss
   replace = require('gulp-replace'),
-  babel = require('gulp-babel');
+  babel = require('gulp-babel'),
+  nunjucks = require('gulp-nunjucks'),
+  rename = require('gulp-rename');
 // “*”：匹配所有文件    例：src/*.js(包含src下的所有js文件)；
 // “**”：匹配0个或多个子文件夹    例：src/**/*.js(包含src的0个或多个子文件夹下的js文件)；
 // “{}”：匹配多个属性    例：src/{a,b}.js(包含a.js和b.js文件)  src/*.{jpg,png,gif}(src下的所有jpg/png/gif文件)；
 // “!”：排除文件    例：!src/a.js(不包含src下的a.js文件)；
 
-module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl}) => {
+module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, tempUrl}) => {
 
   gulp.task('scss:prod', function () {
     return gulp.src(cssUrl, {base: './app/client'})
@@ -60,6 +62,15 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl}) => {
       .pipe(gulp.dest('./app'));
   });
 
+  gulp.task('template:prod', function () {
+    return gulp.src(tempUrl, {base: './app/client'})
+      .pipe(nunjucks.precompile())
+      .pipe(rename(function (path) {
+        path.extname = '.js';
+      }))
+      .pipe(gulp.dest('./app'));
+  });
+
   gulp.task('htmlmin:prod', function () {
     const options = {
       removeComments: true,//清除HTML注释
@@ -79,5 +90,5 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl}) => {
       .pipe(gulp.dest('./app'));
   });
 
-  gulp.task('prod', ['sprite', 'scss:prod', 'jsmin:prod', 'imagemin:prod', 'htmlmin:prod', 'iconfont:prod']);
+  gulp.task('prod', ['sprite', 'scss:prod', 'jsmin:prod', 'imagemin:prod', 'htmlmin:prod', 'iconfont:prod', 'template:prod']);
 };
