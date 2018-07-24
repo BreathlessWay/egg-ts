@@ -1,11 +1,7 @@
 import { BaseConfig, DefaultConfig } from './config.default';
 
-interface DevConfig {
-  compress: { threshold: number };
-}
-
 export default () => {
-  const config = {} as DefaultConfig & DevConfig;
+  const config = {} as DefaultConfig;
   config.news = {
     serverUrl: 'https://cnodejs.org/api/v1'
   };
@@ -13,7 +9,7 @@ export default () => {
 };
 
 declare module 'egg' {
-  interface EggAppConfig extends BaseConfig, DevConfig {
+  interface EggAppConfig extends BaseConfig {
 
   }
 }

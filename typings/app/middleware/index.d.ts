@@ -5,6 +5,7 @@ import Compress from '../../../app/middleware/compress';
 import ErrorHandler from '../../../app/middleware/error_handler';
 import ErrorPage from '../../../app/middleware/error_page';
 import IsLogin from '../../../app/middleware/isLogin';
+import IsNotLogin from '../../../app/middleware/isNotLogin';
 
 declare module 'egg' {
   interface IMiddleware {
@@ -12,5 +13,6 @@ declare module 'egg' {
     errorHandler: typeof ErrorHandler;
     errorPage: typeof ErrorPage;
     isLogin: typeof IsLogin;
+    isNotLogin: typeof IsNotLogin;
   }
 }
