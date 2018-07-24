@@ -1,5 +1,7 @@
 import * as moment from 'moment';
 
+moment.locale('zh-cn'); // 使用中文
+
 export default {
   formatTime: (time: Date) => moment(new Date(time)).format('YYYY年MM月DD日'),
   formatTab: (name: string, good: boolean, top: boolean) => {

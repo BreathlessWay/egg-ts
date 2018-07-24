@@ -33,10 +33,8 @@
                         <a href="/user/{{ item.author.loginname }}" class="d-inline-block align-middle">
                             <img src="{{ item.author.avatar_url }}" alt="{{ item.author.loginname }}" width="40" class="rounded-circle">
                         </a>
-                        <a href="/detail/{{ item.id }}" class="ml-1 mr-2 d-inline-block text-truncate cnode-home_article align-middle">
-                            <span class="badge badge-success">
-                                {{ helper.formatTab(item.tab,item.good,item.top) }}
-                            </span>
+                        <a href="/detail/{{ item.id }}" class="mx-2 d-inline-block text-truncate cnode-home_article align-middle">
+                            <span class="badge badge-success mr-2">{{ helper.formatTab(item.tab,item.good,item.top) }}</span>
                             {{ item.title }}
                         </a>
                         <i class="cnode-home_count d-inline-block align-middle">
@@ -52,10 +50,10 @@
             <nav>
                 <ul class="pagination justify-content-center mt-4 mb-2">
                     {% if ctx.locals.page > 1 %}
-                    <li class="page-item"><a class="page-link" href="/?tab={{ ctx.locals.active }}&page={{ ctx.locals.page-1 }}">上一页</a></li>
+                    <li class="page-item cnode-home-page_pre"><a class="page-link" href="/?tab={{ ctx.locals.active }}&page={{ ctx.locals.page-1 }}">上一页</a></li>
                     {% endif %}
                     {% if hasMore %}
-                    <li class="page-item"><a class="page-link" href="/?tab={{ ctx.locals.active }}&page={{ +ctx.locals.page + 1 }}">下一页</a></li>
+                    <li class="page-item cnode-home-page_next"><a class="page-link" href="/?tab={{ ctx.locals.active }}&page={{ +ctx.locals.page + 1 }}">下一页</a></li>
                     {% endif %}
                 </ul>
             </nav>
