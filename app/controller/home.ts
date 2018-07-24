@@ -4,8 +4,12 @@ export default class HomeController extends BaseController {
   public async index () {
     this.ctx.locals.active = this.ctx.query.tab || 'all';
     this.ctx.locals.page = this.ctx.query.page || 1;
-    const res = await this.ctx.service.home.list({tab: this.ctx.query.tab, page: this.ctx.locals.page});
-    const hasMore = res.length === this.config.news.limit;
+    const res = await this.ctx.service.home.list({tab: this.ctx.locals.active, page: this.ctx.locals.page});
+    if (!res) {
+      this.ctx.status = 404;
+      return;
+    }
+    const hasMore = res!.length === this.config.news.limit;
     await this.ctx.render('home', {
       lists: [
         {

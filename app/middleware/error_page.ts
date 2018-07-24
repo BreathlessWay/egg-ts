@@ -4,13 +4,13 @@ export default () => {
   return async function errorPage (ctx, next) {
     await next();
     if (status.includes(ctx.status) && !ctx.body) {
-      const {message} = ctx;
+      console.log('404', ctx.message);
       if (ctx.acceptJSON) {
         ctx.body = {error: 'Not Found'};
       } else {
         await ctx.render('404.njk', {
           code: 404,
-          error: message || '页面找不到了'
+          error: '页面找不到了'
         });
       }
     }

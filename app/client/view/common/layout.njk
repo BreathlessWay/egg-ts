@@ -44,11 +44,39 @@
     {% endblock %}
 </article>
 
+<aside class="position-fixed back-top p-2 border border-right-0 rounded-left text-primary">返<br>回<br>顶<br>部</aside>
+
 <footer class="container-fluid bg-dark cnode-footer">
     <section class="container py-4">
         <a href="https://cnodejs.org">CNode Intro</a>
     </section>
 </footer>
+
+<!-- Login Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginLable" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginLable">登录</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="user">AccessToken</label>
+                    <input type="text" class="form-control" id="user" aria-describedby="userHelper" placeholder="请输入access-token" value="e111bccc-3a4b-4428-9b7c-efa257a4da0d">
+                    <i class="invalid-feedback">请输入正确的access-token</i>
+                    <small id="userHelper" class="form-text text-muted">如何获取 accessToken？ 用户登录后，在设置页面可以看到自己的 accessToken。</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary login-btn">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% block script %}
 <!-- Optional JavaScript -->

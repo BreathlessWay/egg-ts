@@ -1,0 +1,25 @@
+{% extends "common/layout.njk" %}
+
+{% block header %}
+<title>{{ detail.title }}</title>
+{% endblock %}
+
+{% block link %}
+{{ super() }}
+<link rel="stylesheet" href="">
+{% endblock %}
+
+{% block content %}
+<article class="container py-4">
+    <h3 class="text-center">{{ detail.title }}</h3>
+    <article>
+        <!--{{ helper.shtml(detail.content) }}-->
+        {{ detail.content | safe }}
+    </article>
+</article>
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+<script></script>
+{% endblock %}

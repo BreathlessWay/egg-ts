@@ -61,10 +61,23 @@
             </nav>
         </section>
         <section class="cnode-home_right col-3">
+            {% if ctx.session.user %}
+            <a href="/user/{{ ctx.session.user.loginname }}">
+                <img src="{{ ctx.session.user.avatar_url }}" alt="默认头像" class="rounded" width="100%">
+            </a>
+            <h4 class="text-center pt-3">{{ ctx.session.user.loginname }}</h4>
+            {% else %}
             <img src="/public/image/home/default-avatar.jpg" alt="默认头像" class="rounded">
+            {% endif %}
+            {% if ctx.session.user %}
             <div class="text-center py-4">
-                <a href="/login" class="btn btn-primary btn-block">登录</a>
+                <a href="javascript:;" class="btn btn-primary btn-block logout-btn">退出</a>
             </div>
+            {% else %}
+            <div class="text-center py-4">
+                <a href="javascript:;" class="btn btn-primary btn-block" data-toggle="modal" data-target="#login">登录</a>
+            </div>
+            {% endif %}
         </section>
     </article>
 </article>
