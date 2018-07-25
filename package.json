@@ -14,6 +14,7 @@
     "dev": "gulp dev && egg-bin dev -r egg-ts-helper/register",
     "debug": "egg-bin debug -r egg-ts-helper/register",
     "test-local": "egg-bin test -r egg-ts-helper/register",
+    "gulp:dev": "gulp dev",
     "test": "npm run lint -- --fix && npm run test-local",
     "cov": "egg-bin cov -r egg-ts-helper/register",
     "tsc": "ets && tsc -p tsconfig.json",
@@ -22,7 +23,6 @@
     "lint": "tslint --project . -c tslint.json",
     "clean": "ets clean && gulp clean",
     "build": "npm run clean && npm run tsc && cross-env NODE_ENV=production gulp prod",
-    "hook": "gulp tsmin:dev",
     "watch": "cross-env NODE_ENV=development gulp browser-sync"
   },
   "dependencies": {
@@ -35,6 +35,7 @@
     "moment": "^2.22.2"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.8",
     "@types/jquery": "^3.3.4",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.5.2",
