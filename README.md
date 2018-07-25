@@ -61,9 +61,15 @@ $ npm start:dev|:pre|:prod 分别启动测试|预发布|正式环境
 1. [eslint](http://eslint.cn/) js的代码规范校验
 2. [tslint](https://palantir.github.io/tslint/rules/) ts的代码规范校验
 
+> 单元测试
+
+1. [mocha](https://segmentfault.com/a/1190000011362879)，mocha是JavaScript的一种单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行。
+2. [power-assert](https://www.jianshu.com/p/41ced3207a0c)，进行BDD单体测试的断言库
+3. [mock](https://github.com/node-modules/mm#api)，模拟数据方法等
+4. [istanbul](https://github.com/gotwarlost/istanbul#readme)，单元测试覆盖率报告
 ### TODO
 1. 客户端开发支持typescript
-2. 单元测试（已添加egg集成的测试demo）
+2. ~~单元测试~~（已添加egg集成的测试demo）
 
 ### 实时刷新
 1. 更改服务端文件时浏览器无法自动刷新的问题，目前通过在agent中监听服务端文件编译成功后，执行一次gulp编译一个hook文件使gulp检测到文件变动，刷新页面，应该有更好的方式

@@ -1,7 +1,8 @@
 import { Application } from 'egg';
 
 export default (app: Application) => {
-  if (app.config.env === <string> 'local' && app.config.env === <string> 'unittest') {
+
+  if (app.config.env !== <string> 'local' && app.config.env !== <string> 'unittest') {
     global.console.log = () => {
       return false;
     };

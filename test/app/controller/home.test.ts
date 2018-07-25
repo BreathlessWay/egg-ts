@@ -15,18 +15,19 @@ describe('home controller test', () => {
     assert($('a[data-target="#login"]').length === 1);
     assert($('.logout-btn').length === 0);
   });
-  describe('- Index', () => {
-    let ctx;
-    before(async () => {
-        ctx = app.mockContext({session: {}});
-      }
-    );
-    it('should not show login btn', async () => {
-      ctx.session.user = {};
-      const content = await app.httpRequest().get('/').expect(200);
-      const $ = cheerio.load(content.text);
-      assert($('a[data-target="#login"]').length === 0);
-      assert($('.logout-btn').length);
+  it('should not show login btn', async () => {
+    app.mockSession({
+      user: {}
     });
+    const content = await app.httpRequest().get('/').expect(200);
+    const $ = cheerio.load(content.text);
+    assert($('a[data-target="#login"]').length === 0);
+    assert($('.logout-btn').length === 1);
+  });
+  it('should get 404 error', async () => {
+    app.mockService('home', 'list', () => {
+      return null;
+    });
+    await app.httpRequest().get('/').expect(404);
   });
 });

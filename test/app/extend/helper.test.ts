@@ -8,6 +8,10 @@ describe('helper utils test', () => {
   });
   it('should get right tab', () => {
     const ctx = app.mockContext();
+    assert(ctx.helper.formatTab('share') === '分享');
+    assert(ctx.helper.formatTab('job') === '招聘');
+    assert(ctx.helper.formatTab('good') === '精华');
+    assert(ctx.helper.formatTab('dev') === '测试');
     assert(ctx.helper.formatTab('ask') === '问答');
     assert(ctx.helper.formatTab('ask', true) === '精华');
     assert(ctx.helper.formatTab('ask', true, true) === '置顶');
