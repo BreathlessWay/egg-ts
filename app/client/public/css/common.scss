@@ -63,3 +63,12 @@ img {
   bottom: 10%;
   display: none;
 }
+
+.cnode-alert {
+  z-index: 9999;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transition: top ease 2s;
+}

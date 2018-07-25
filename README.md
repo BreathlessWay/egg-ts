@@ -40,7 +40,7 @@ $ npm start:dev|:pre|:prod 分别启动测试|预发布|正式环境
 
 > 服务端
 
-1. [egg](https://eggjs.org/zh-cn/intro/) 基于koa的node开发框架
+1. [egg](https://eggjs.app/zh-cn/intro/quickstart.html) 基于koa的node开发框架
 2. [typescript](https://www.tslang.cn/docs/handbook/basic-types.html) javascript的超集，用于类型校验提高代码规范度
 3. [nunjucks](https://mozilla.github.io/nunjucks/cn/templating.html) 模版引擎
 4. [moment](http://momentjs.cn/) 时间处理插件

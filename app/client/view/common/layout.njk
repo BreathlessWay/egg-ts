@@ -21,7 +21,11 @@
     {% endblock %}
 </head>
 <body>
-
+{% if ctx.session.flash %}
+<div class="alert alert-{{ ctx.session.flash.type }} container position-fixed cnode-alert" role="alert">
+    {{ ctx.session.flash.msg }}
+</div>
+{% endif %}
 <header class="container-fluid bg-dark cnode-header position-fixed">
     <section class="container d-flex justify-content-between align-items-center cnode-header_container">
         <a href="/" class="home-logo d-inline-block"></a>
