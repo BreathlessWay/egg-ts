@@ -5,7 +5,7 @@ export default () => {
   config.news = {
     serverUrl: 'https://cnodejs.org/api/v1'
   };
-  config.middleware = [ 'errorHandler', 'errorPage' ];  // 加载顺序 error=>compress=>...
+  config.middleware = [ 'errorHandler', 'errorPage', 'flash' ];  // 加载顺序 error=>compress=>...
 
   return config;
 };

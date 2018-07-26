@@ -8,5 +8,9 @@ export default class LogoutController extends BaseController {
       success: true,
       data: null
     };
+    this.ctx.flash = {
+      type: 'success',
+      msg: '退出成功'
+    };
   }
 }

@@ -11,11 +11,19 @@ export default class LoginController extends BaseController {
         success: true,
         data: res
       };
+      this.ctx.flash = {
+        type: 'success',
+        msg: '登录成功'
+      };
     } else {
       this.ctx.status = 400;
       this.ctx.body = {
         success: false,
         error: '登录失败'
+      };
+      this.ctx.flash = {
+        type: 'danger',
+        msg: '登录失败'
       };
     }
   }

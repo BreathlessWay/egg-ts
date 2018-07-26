@@ -21,9 +21,9 @@
     {% endblock %}
 </head>
 <body>
-{% if ctx.session.flash %}
-<div class="alert alert-{{ ctx.session.flash.type }} container position-fixed cnode-alert" role="alert">
-    {{ ctx.session.flash.msg }}
+{% if ctx.flash %}
+<div class="alert alert-{{ ctx.flash.type }} container position-fixed cnode-alert" role="alert">
+    {{ ctx.flash.msg }}
 </div>
 {% endif %}
 <header class="container-fluid bg-dark cnode-header position-fixed">

@@ -9,7 +9,7 @@ export default () => {
   config.news = {
     serverUrl: 'https://cnodejs.org/api/v1'
   };
-  config.middleware = [ 'errorHandler', 'errorPage', 'compress' ];  // 加载顺序 error=>compress=>...
+  config.middleware = [ 'errorHandler', 'errorPage', 'compress', 'flash' ];  // 加载顺序 error=>compress=>...
   config.compress = {
     threshold: 1024
   };

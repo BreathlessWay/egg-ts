@@ -1,7 +1,7 @@
 const status = [ 404, 403 ];
 
 export default () => {
-  return async function errorPage (ctx, next) {
+  return async (ctx, next) => {
     await next();
     if (status.includes(ctx.status) && !ctx.body) {
       console.log('404', ctx.message);

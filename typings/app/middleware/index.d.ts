@@ -4,6 +4,7 @@
 import Compress from '../../../app/middleware/compress';
 import ErrorHandler from '../../../app/middleware/error_handler';
 import ErrorPage from '../../../app/middleware/error_page';
+import Flash from '../../../app/middleware/flash';
 import IsLogin from '../../../app/middleware/isLogin';
 import IsNotLogin from '../../../app/middleware/isNotLogin';
 
@@ -12,6 +13,7 @@ declare module 'egg' {
     compress: typeof Compress;
     errorHandler: typeof ErrorHandler;
     errorPage: typeof ErrorPage;
+    flash: typeof Flash;
     isLogin: typeof IsLogin;
     isNotLogin: typeof IsNotLogin;
   }
