@@ -6,21 +6,22 @@
 {% block link %}
 {{ super() }}
 <link rel="stylesheet" href="/public/css/home/index.css?rev=@@hash">
+<link rel="stylesheet" href="/public/css/home-create.css?rev=@@hash">
 {% endblock %}
 {% block content %}
 {{ helper.shtml(content) }}
 <br>
 {% raw %}
-{{不转一下!!}}
+{{不转一下!!!}}
 {% endraw %}
 {% include "common.njk" %}
 <h3>home page</h3>
 {% if today %}
 <p>今天是：{{today}}</p>
 {% else %}
-<p>没有时间</p>
+<p class="red border">没有时间</p>
 {% endif %}
-<p>
+<p class="create-border">
     <a href="/news">news-link</a>
     <i class="iconfont icon-shezhi"></i>
 </p>
