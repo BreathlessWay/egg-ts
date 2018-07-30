@@ -127,7 +127,10 @@ module.exports = ({cssUrl, jsUrl, tsUrl, viewUrl, imgUrl, iconUrl, spriteUrl, te
       port: 8000
     });
 
-    gulp.watch(['./app/public/**/*', './app/view/*']).on('change', reload);
+    // gulp.watch(['./app/public/**/*', './app/view/*']).on('change', reload);
+    watch(['./app/public/**/*', './app/view/*'], batch(function (events, done) {
+      reload();
+    }));
 
   });
 
